@@ -31,7 +31,7 @@
      <property name="title">
       <string/>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -60,7 +60,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit"/>
+            <widget class="QLineEdit" name="emailLn"/>
            </item>
           </layout>
          </item>
@@ -69,12 +69,12 @@
            <item>
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>Email :</string>
+              <string>Username</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_4"/>
+            <widget class="QLineEdit" name="usernameLn"/>
            </item>
           </layout>
          </item>
@@ -83,12 +83,12 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Email :</string>
+              <string>First Name</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_2"/>
+            <widget class="QLineEdit" name="firstnameLn"/>
            </item>
           </layout>
          </item>
@@ -97,37 +97,19 @@
            <item>
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>Email :</string>
+              <string>Password</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_3"/>
+            <widget class="QLineEdit" name="passwordLn"/>
            </item>
           </layout>
          </item>
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QRadioButton" name="radioButton">
-           <property name="text">
-            <string>Male</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_2">
-           <property name="text">
-            <string>Female</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="createAccountBtn">
          <property name="text">
           <string>create account</string>
          </property>
@@ -146,6 +128,19 @@
       </property>
       <property name="text">
        <string>Back</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>380</y>
+        <width>181</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show Password</string>
       </property>
      </widget>
     </widget>

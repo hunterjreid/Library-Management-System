@@ -15,6 +15,12 @@ public:
     explicit loginDialog(QWidget *parent = nullptr);
     ~loginDialog();
 
+private slots:
+
+    void on_confrimBtn_clicked();
+
+    void on_showPassCheckbox_stateChanged(int arg1);
+
 private:
     Ui::loginDialog *ui;
 };
