@@ -15,6 +15,9 @@ public:
     explicit loginDialog(QWidget *parent = nullptr);
     ~loginDialog();
 
+signals:
+    void sendLogin(const QString &username);
+
 private slots:
 
     void on_confrimBtn_clicked();

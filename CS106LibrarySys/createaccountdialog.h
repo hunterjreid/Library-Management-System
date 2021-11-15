@@ -15,10 +15,15 @@ public:
     explicit createAccountDialog(QWidget *parent = nullptr);
     ~createAccountDialog();
 
+
+
 private slots:
     void on_createAccountBtn_clicked();
 
-    void on_checkBox_stateChanged(int arg1);
+    void on_checkBox_stateChanged(int showPassword);
+
+signals:
+    void sendLogin(const QString &username); //login.
 
 private:
     Ui::createAccountDialog *ui;

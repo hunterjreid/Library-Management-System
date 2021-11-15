@@ -21,6 +21,14 @@ private slots:
 
     void on_createAccountBtn_clicked();
 
+    void receiveLogin(const QString &username);
+
+    void on_signOutBtn_clicked();
+
+    void on_bookRemove_clicked();
+
+    void on_addBookBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -26,50 +26,145 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="loginBtn">
+   <widget class="QListWidget" name="listWidget_books">
     <property name="geometry">
      <rect>
-      <x>91</x>
-      <y>91</y>
+      <x>760</x>
+      <y>80</y>
+      <width>291</width>
+      <height>471</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>ewqewq</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ewqeqw</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ewqewq2</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="addBookBtn">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>580</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Login</string>
+     <string>add</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="createAccountBtn">
+   <widget class="QPushButton" name="bookRemove">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>160</y>
-      <width>141</width>
+      <x>1010</x>
+      <y>570</y>
+      <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Create Account</string>
+     <string>remove</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>130</y>
-      <width>16</width>
+      <x>770</x>
+      <y>40</y>
+      <width>301</width>
       <height>16</height>
      </rect>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>16777215</height>
-     </size>
+    <property name="text">
+     <string>All Books</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="bookTitleLn">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>580</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>580</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
     </property>
     <property name="text">
-     <string>Or </string>
+     <string>add book</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>77</y>
+      <width>442</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>160000</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Profile Settings | Status :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="loginLb">
+       <property name="text">
+        <string>Not logged in</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="signOutBtn">
+       <property name="text">
+        <string>Sign out</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="loginBtn">
+       <property name="text">
+        <string>Login</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="createAccountBtn">
+       <property name="text">
+        <string>Create Account</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -85,5 +180,22 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>listWidget_books</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>label_2</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>743</x>
+     <y>320</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>696</x>
+     <y>124</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
