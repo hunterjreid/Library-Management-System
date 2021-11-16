@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include "logindialog.h"
 #include "createaccountdialog.h"
+#include "addbookdialog.h"
+#include "book.h"
+#include <QFile>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,6 +13,28 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->loginLb->setText("Not Logged In");
     ui->signOutBtn->hide();
+
+    //Load books
+    QFile inputFile("books.txt");
+    inputFile.open(QIODevice::ReadOnly |
+                   QIODevice::Text);
+
+    QTextStream in(&inputFile);
+    ui->listWidget_books->clear();
+
+    while(!in.atEnd())
+    {
+        QString line = in.readLine();
+        QStringList info = line.split(",");
+        //handle list of products ui
+        ui->listWidget_books->addItem(info.at(0) + " - " + info.at(1));
+        //handle vector
+        book* newBook = new book(info.at(0),info.at(1),info.at(2),info.at(3));
+        bookList.push_back(newBook);
+    } //end while
+
+    in.flush();
+    inputFile.close();
 }
 
 MainWindow::~MainWindow()
@@ -34,7 +59,54 @@ void MainWindow::on_createAccountBtn_clicked()
     dialog.exec();
     //This func leads to receiveLogin if login is sucessful see below
 }
+//addBook (admin use only)
+void MainWindow::on_addBookAdmin_clicked()
+{
+    book* newBook = nullptr;
+    addBookDialog dialog(newBook, nullptr);
+    dialog.setModal(true);
+    dialog.exec();
 
+    if (newBook != nullptr)
+    {
+        bookList.push_back(newBook);
+        ui->listWidget_books->addItem(newBook->getName());
+        QFile userFile("books.txt");
+        userFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
+        QTextStream out(&userFile);
+        //Edit file new line
+        out<<newBook->getName()<<",";
+        out<<newBook->getGenre()<<",";
+        out<<newBook->getImageFilePath()<<",";
+        out<<newBook->getWords()<<Qt::endl;
+    }
+}
+void MainWindow::on_listWidget_books_itemDoubleClicked(QListWidgetItem *item)
+{
+    //change to edit mode if admin
+    int index = item->listWidget()->currentRow();
+
+    if (index != -1)
+    {
+        book* currentItem = bookList.at(index);
+
+        if (currentItem != nullptr)
+        {
+            ui->titleLabel->setText(currentItem->getName());
+            ui->authLabel->setText(currentItem->getGenre());
+            ui->bookContentPlain->setPlainText(currentItem->getWords());
+
+
+            QPixmap pixmap(currentItem->getImageFilePath());
+
+            qDebug() << currentItem->getImageFilePath();
+
+            ui->bookPreview->setPixmap(pixmap);
+
+            ui->bookPreview->setScaledContents(true);
+        } //end inner if
+    } //end if
+}
 void MainWindow::receiveLogin(const QString &username) {
     //login sucess.
     //qDebug() << username << " has logged in (Verifed login).";
@@ -44,7 +116,6 @@ void MainWindow::receiveLogin(const QString &username) {
     ui->signOutBtn->show();
 
 }
-
 void MainWindow::on_signOutBtn_clicked()
 {
     // Sign out btn clicked
@@ -54,17 +125,5 @@ void MainWindow::on_signOutBtn_clicked()
     ui->loginLb->setText("Not Logged In");
 }
 
-void MainWindow::on_bookRemove_clicked()
-{
-    // Remove book
-    QListWidgetItem *it = ui->listWidget_books->takeItem(ui->listWidget_books->currentRow());
-    delete it;
-}
 
-void MainWindow::on_addBookBtn_clicked()
-{
-    // add book (changed need) --- change to dialog
-    QListWidgetItem *newBook = new QListWidgetItem;
-    newBook->setText(ui->bookTitleLn->text());
-    ui->listWidget_books->insertItem(0, newBook);
-}
+

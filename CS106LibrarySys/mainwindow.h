@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "book.h"
+#include <QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,11 +27,12 @@ private slots:
 
     void on_signOutBtn_clicked();
 
-    void on_bookRemove_clicked();
+    void on_listWidget_books_itemDoubleClicked(QListWidgetItem *item);
 
-    void on_addBookBtn_clicked();
+    void on_addBookAdmin_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QVector<book*> bookList;
 };
 #endif // MAINWINDOW_H
