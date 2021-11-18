@@ -19,17 +19,20 @@ public:
 
 
 private slots:
-    void on_loginBtn_clicked();
-
-    void on_createAccountBtn_clicked();
-
     void receiveLogin(const QString &username);
-
-    void on_signOutBtn_clicked();
-
     void on_listWidget_books_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_loginBtn_clicked();
+    void on_createAccountBtn_clicked();
+    void on_signOutBtn_clicked();
     void on_addBookAdmin_clicked();
+    void on_searchBtn_clicked();
+
+    void on_searchLn_textChanged(const QString &arg1);
+
+    void on_archivedBtn_clicked();
+
+    void on_save_clicked();
 
 private:
     Ui::MainWindow *ui;

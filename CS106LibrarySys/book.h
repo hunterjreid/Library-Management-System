@@ -5,9 +5,14 @@
 class book
 {
 public:
-    book(QString name, QString genre, QString imageFilePath = "none.png", QString words = "NO WORDS SET.",int canCheckout = 1);
+    book(int archived, QString name, QString genre, QString imageFilePath = "none.png", QString words = "NO WORDS SET.",int canCheckout = 1);
+
 
     void checkOutBook();
+
+    bool isArchived();
+    void unArchived();
+
     void checkInBook();
     int canCheckoutFunc(); // <-- add these features
 
@@ -23,11 +28,14 @@ public:
     void setImageFilePath(QString imageFilePath);
     QString getImageFilePath() const;
 
+    void setArchived();
+
 private:
     QString name;
     QString genre;
     QString imageFilePath;
     QString words;
+    int archived;
     int canCheckout;
     book();
 };

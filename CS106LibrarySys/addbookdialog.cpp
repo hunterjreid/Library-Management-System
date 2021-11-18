@@ -11,7 +11,7 @@ addBookDialog::addBookDialog(book*& newBook, QWidget *parent) :
 {
     ui->setupUi(this);
     this->newBook = &newBook;
-    imageFilePath = "none.png"; //default
+    imageFilePath = "./none.png"; //default
     connect(ui->addImageBtn, &QPushButton::clicked,
             this, &addBookDialog::loadItemImage);
     QDir pathDir("./images");
@@ -35,7 +35,7 @@ void addBookDialog::on_confirmBtn_clicked()
 
     if (title.trimmed() != "")
     {
-        *newBook = new book(title, author, imageFilePath, words, canCheckout);
+        *newBook = new book(0, title, author, imageFilePath, words, canCheckout);
         this->close();
     }
     else

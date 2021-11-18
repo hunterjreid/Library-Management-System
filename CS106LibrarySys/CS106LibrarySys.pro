@@ -12,6 +12,7 @@ SOURCES += \
     addbookdialog.cpp \
     book.cpp \
     createaccountdialog.cpp \
+    editbookdialog.cpp \
     logindialog.cpp \
     main.cpp \
     mainwindow.cpp
@@ -20,12 +21,14 @@ HEADERS += \
     addbookdialog.h \
     book.h \
     createaccountdialog.h \
+    editbookdialog.h \
     logindialog.h \
     mainwindow.h
 
 FORMS += \
     addbookdialog.ui \
     createaccountdialog.ui \
+    editbookdialog.ui \
     logindialog.ui \
     mainwindow.ui
 
