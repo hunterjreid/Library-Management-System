@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     addbookdialog.cpp \
+    admindialog.cpp \
     book.cpp \
     createaccountdialog.cpp \
     editbookdialog.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     addbookdialog.h \
+    admindialog.h \
     book.h \
     createaccountdialog.h \
     editbookdialog.h \
@@ -27,6 +29,7 @@ HEADERS += \
 
 FORMS += \
     addbookdialog.ui \
+    admindialog.ui \
     createaccountdialog.ui \
     editbookdialog.ui \
     logindialog.ui \

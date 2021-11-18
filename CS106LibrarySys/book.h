@@ -5,12 +5,14 @@
 class book
 {
 public:
-    book(int archived, QString name, QString genre, QString imageFilePath = "none.png", QString words = "NO WORDS SET.",int canCheckout = 1);
+    book(int archived, QString name, QString genre, QString imageFilePath = "./none.png.", QString words = "NO WORDS SET.",int canCheckout = 1);
 
 
     void checkOutBook();
 
     bool isArchived();
+    bool isDeleted();
+    void deleteBook();
     void unArchived();
 
     void checkInBook();
@@ -35,6 +37,7 @@ private:
     QString genre;
     QString imageFilePath;
     QString words;
+    int hidden;
     int archived;
     int canCheckout;
     book();

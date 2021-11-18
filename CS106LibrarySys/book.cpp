@@ -17,6 +17,20 @@ bool book::isArchived() {
     }
 }
 
+bool book::isDeleted() {
+    if (this->archived == -1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+void book::deleteBook() {
+    this->archived = -1;
+}
+
+
+
 void book::checkOutBook() {
      this->canCheckout = 0;
 }

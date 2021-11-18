@@ -4,6 +4,7 @@
 #include "createaccountdialog.h"
 #include "addbookdialog.h"
 #include "editbookdialog.h"
+#include "admindialog.h"
 #include "book.h"
 #include <QFile>
 #include <QString>
@@ -16,6 +17,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->loginLb->setText("Not Logged In");
     ui->signOutBtn->hide();
+
+
+    QPixmap image("C:/Users/hunte/OneDrive/Desktop/CS106LibrarySys/logo.png");
+    ui->logoImg->setPixmap(image);
+    ui->logoImg->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
+
 
     //Load books
     QFile inputFile("books.txt");
@@ -33,32 +41,38 @@ MainWindow::MainWindow(QWidget *parent)
 
         //handle vector
 
-
-
         int archived = info.at(0).split(" ")[0].toInt();
-        qDebug() << archived;
-        QString name = info.at(1);
-        QString genre = info.at(2);
 
-        ui->listWidget_books->addItem(info.at(1));
-        book* newBook = new book(archived,name,genre,info.at(3));
-
-//         book(int archived, QString name, QString genre, QString imageFilePath = "none.png", QString words = "NO WORDS SET.",int canCheckout = 1);
-       bookList.push_back(newBook);
+        //handle vector
+        if (archived != -1) {
 
 
-       if (archived) {
-                      this->ui->listWidget_books->item(this->ui->listWidget_books->count()-1)->setForeground(Qt::red);
-       } else {
-                      this->ui->listWidget_books->item(this->ui->listWidget_books->count()-1)->setForeground(Qt::black);
+            qDebug() << archived;
+            QString name = info.at(1);
+            QString genre = info.at(2);
+
+            ui->listWidget_books->addItem(info.at(1));
+            book* newBook = new book(archived,name,genre,info.at(3));
+
+    //         book(int archived, QString name, QString genre, QString imageFilePath = "none.png", QString words = "NO WORDS SET.",int canCheckout = 1);
+           bookList.push_back(newBook);
 
 
-       }
+           if (!archived) {
+                          this->ui->listWidget_books->item(this->ui->listWidget_books->count()-1)->setHidden(false);
+           } else {
+                          this->ui->listWidget_books->item(this->ui->listWidget_books->count()-1)->setHidden(true);
+
+
+           }
+
+
 
     } //end while
 
     in.flush();
     inputFile.close();
+}
 }
 
 MainWindow::~MainWindow()
@@ -83,6 +97,16 @@ void MainWindow::on_createAccountBtn_clicked()
     dialog.exec();
     //This func leads to receiveLogin if login is sucessful see below
 }
+
+
+//go to admin
+void MainWindow::on_pushButton_clicked()
+{
+    adminDialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
+}
+
 //addBook (admin use only)
 void MainWindow::on_addBookAdmin_clicked()
 {
@@ -113,30 +137,7 @@ void MainWindow::on_addBookAdmin_clicked()
 
 void MainWindow::on_save_clicked()
 {
-    QFile outputFile("books.txt");
-
-    outputFile.open(QIODevice::WriteOnly |
-                    QIODevice::Text);
-
-    QTextStream out(&outputFile);
-
-    for(book* book:bookList)
-    {
-        if (book->isArchived()) {
-            out<<"1,";
-        } else {
-            out<<"0,";
-        }
-
-        out << book->getName()<<",";
-        out << book->getGenre()<<",";
-        out << book->getImageFilePath()<<",";
-        out << book->getWords()<<Qt::endl;
-
-
-
-
-    }
+   qDebug() << "redunt";
 }
 void MainWindow::on_listWidget_books_itemDoubleClicked(QListWidgetItem *item)
 {
@@ -221,31 +222,63 @@ void MainWindow::on_searchLn_textChanged(const QString &text)
     }
 }
 
+//refresh
+void MainWindow::on_pushButton_2_clicked()
+{
+
+    QFile inputFile("books.txt");
+    inputFile.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    QTextStream in(&inputFile);
+    ui->listWidget_books->clear();
+    bookList.clear();
+
+    while(!in.atEnd())
+    {
+        QString line = in.readLine();
+        QStringList info = line.split(",");
+        //handle list of products ui
+
+        int archived = info.at(0).split(" ")[0].toInt();
+
+        //handle vector
+        if (archived != -1) {
+
+
+            qDebug() << archived;
+            QString name = info.at(1);
+            QString genre = info.at(2);
+
+            ui->listWidget_books->addItem(info.at(1));
+            book* newBook = new book(archived,name,genre,info.at(3));
+
+    //         book(int archived, QString name, QString genre, QString imageFilePath = "none.png", QString words = "NO WORDS SET.",int canCheckout = 1);
+           bookList.push_back(newBook);
+
+
+
+           if (!archived) {
+                          this->ui->listWidget_books->item(this->ui->listWidget_books->count()-1)->setHidden(false);
+           } else {
+                          this->ui->listWidget_books->item(this->ui->listWidget_books->count()-1)->setHidden(true);
+
+
+           }
+
+
+        }
+
+
+
+    } //end while
+
+    in.flush();
+    inputFile.close();
+}
 
 void MainWindow::on_archivedBtn_clicked()
 {
-    int index = ui->listWidget_books->currentIndex().row();
-
-    if (index != -1)
-    {
-        book* SelectedBook = bookList.at(index);
-
-        if (SelectedBook != nullptr)
-        {
-            editBookDialog editbookDialog(SelectedBook, nullptr);
-            editbookDialog.exec();
-
-
-
-        }//end inner if
-
-        bool archived = bookList[index]->isArchived();
-        if (!archived) {
-             this->ui->listWidget_books->currentItem()->setForeground(Qt::black);
-        } else {
-             this->ui->listWidget_books->currentItem()->setForeground(Qt::red);
-        }
-    }//end if
+    //end if
 
 
 
@@ -357,6 +390,9 @@ void MainWindow::on_archivedBtn_clicked()
 
 
     //this->ui->listWidget_books->currentItem()->setHidden()
+
+
+
 
 
 

@@ -23,6 +23,9 @@ editBookDialog::editBookDialog(book* editBook, QWidget *parent) :
   ui->radioButton_show->click();
     }
 
+    ui->title->setText(editBook->getName());
+    ui->author->setText(editBook->getGenre());
+    ui->text->setText(editBook->getWords());
 
 }
 
@@ -34,12 +37,22 @@ editBookDialog::~editBookDialog()
 void editBookDialog::on_confirmbtn_clicked()
 {
 
+
+
     if (ui->radioButton_show->isChecked()) {
         editBook->unArchived();
     } else if (ui->radioButton_hide->isChecked()) {
         editBook->setArchived();
 
     }
+
+
+    editBook->setName((ui->title->text()));
+    editBook->setGenre((ui->author->text()));
+    editBook->setWords((ui->text->text()));
+
+
+
     this->close();
 
 
