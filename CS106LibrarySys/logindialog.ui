@@ -11,82 +11,133 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Signin Screen</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="maximumSize">
-      <size>
-       <width>370</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>130</y>
-        <width>211</width>
-        <height>106</height>
-       </rect>
-      </property>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="emailLb">
-         <property name="text">
-          <string>Username</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="emailLn"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="passwordLb">
-         <property name="text">
-          <string>Password</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="passwordLn"/>
-       </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="confrimBtn">
-         <property name="text">
-          <string>Signin</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
-        <widget class="QPushButton" name="backBtn">
-         <property name="text">
-          <string>Back</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QCheckBox" name="showPassCheckbox">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>360</y>
-        <width>191</width>
-        <height>17</height>
-       </rect>
+  <widget class="QPushButton" name="confrimBtn">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>370</y>
+     <width>251</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding:5px;
+font-size:16px;</string>
+   </property>
+   <property name="text">
+    <string>Signin</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="passwordLn">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>290</y>
+     <width>251</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding:5px;
+font-size:12px;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="emailLn">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>230</y>
+     <width>251</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding:5px;
+font-size:12px;</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="showPassCheckbox">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>340</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Show Password</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>93</y>
+     <width>171</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:20px;</string>
+   </property>
+   <property name="text">
+    <string>Signin Screen</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backBtn">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>589</y>
+     <width>361</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>89</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="emailLb">
+      <property name="styleSheet">
+       <string notr="true">font-size:15px;</string>
       </property>
       <property name="text">
-       <string>Show Password</string>
+       <string>Username :  </string>
       </property>
      </widget>
-    </widget>
-   </item>
-  </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="passwordLb">
+      <property name="styleSheet">
+       <string notr="true">font-size:15px;</string>
+      </property>
+      <property name="text">
+       <string>Password :  </string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections>

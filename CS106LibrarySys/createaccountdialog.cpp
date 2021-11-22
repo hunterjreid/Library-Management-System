@@ -2,7 +2,6 @@
 #include "ui_createaccountdialog.h"
 #include "mainwindow.h"
 #include <QFileDialog>
-
 createAccountDialog::createAccountDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::createAccountDialog)
@@ -10,12 +9,10 @@ createAccountDialog::createAccountDialog(QWidget *parent) :
     ui->setupUi(this);
     ui->passwordLn->setEchoMode(QLineEdit::Password);
 }
-
 createAccountDialog::~createAccountDialog()
 {
     delete ui;
-}
-
+} // On create account.
 void createAccountDialog::on_createAccountBtn_clicked()
 {
     //Open file
@@ -34,7 +31,6 @@ void createAccountDialog::on_createAccountBtn_clicked()
     //close dialog.
     this->close();
 }
-
 //Show Password by changing EchoMode
 void createAccountDialog::on_checkBox_stateChanged(int showPassword)
 {
@@ -46,4 +42,3 @@ void createAccountDialog::on_checkBox_stateChanged(int showPassword)
         ui->passwordLn->setEchoMode(QLineEdit::Password);
     }
 }
-

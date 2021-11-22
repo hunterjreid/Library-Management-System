@@ -10,77 +10,47 @@ editBookDialog::editBookDialog(book* editBook, QWidget *parent) :
 {
     ui->setupUi(this);
     this->editBook = editBook;
-
-    qDebug() << editBook->isArchived();
-
-    if(editBook->isArchived()) {
-
-
-
-      ui->radioButton_hide->click();
-    } else {
-
-  ui->radioButton_show->click();
-    }
-
+    imageFilePath = editBook->getImageFilePath();
+    QPixmap pixmap(editBook->getImageFilePath());
+    ui->imagePreview->setPixmap(pixmap);
+    ui->imagePreview->setScaledContents(true);
     ui->title->setText(editBook->getName());
-    ui->author->setText(editBook->getGenre());
-    ui->text->setText(editBook->getWords());
-
+    ui->authorLine->setText(editBook->getAuthor());
+    ui->tags->setText(editBook->getGenre());
+    ui->addedDateLabel->setText(editBook->getAdded_date());
+    ui->plainTextEdit->setPlainText(editBook->getWords());
 }
 
 editBookDialog::~editBookDialog()
 {
     delete ui;
 }
-
 void editBookDialog::on_confirmbtn_clicked()
 {
-
-
-
-    if (ui->radioButton_show->isChecked()) {
-        editBook->unArchived();
-    } else if (ui->radioButton_hide->isChecked()) {
-        editBook->setArchived();
-
-    }
-
-
-    editBook->setName((ui->title->text()));
-    editBook->setGenre((ui->author->text()));
-    editBook->setWords((ui->text->text()));
-
-
-
-    this->close();
-
-
-//    QFile booksFile("books.txt");
-//    booksFile.open(QIODevice::ReadWrite);
-//    QTextStream b_file(&booksFile);
-
-//    //do {
-//        QString line = b_file.readLine();
-//        QStringList data = line.split(",");
-//        qDebug() << ui->listWidget_books->currentItem()->text();
-//        qDebug() << bookList[index]->getName();
-
-//        if ( ui->listWidget_books->currentItem()->text() == bookList[index]->getName() ) {
-
-//            if (archived) {
-//               data[0] = "0";
-//            } else {
-//               data[0] = "1";
-//            }
-//            QString s;
-//            QString updated_ln = data.join(",");
-//            s.append(updated_ln + "\n");
-//            booksFile.resize(0);
-//            b_file << s;
-//            bookList[index]->switchArchived();
-//            return;
-//        }
-
+   editBook->setName(ui->title->text());
+   editBook->setAuthor(ui->authorLine->text());
+   editBook->setGenre(ui->tags->text());
+   editBook->setWords(ui->plainTextEdit->toPlainText());
+   editBook->setImageFilePath(imageFilePath);
+   this->close();
+}
+//Update image.
+void editBookDialog::on_addImageBtn_clicked()
+{
+    QString filename;
+    filename = QFileDialog::getOpenFileName(this,
+                                            "Open Image", "./",
+                                            "Image Files (*.png *.jpg)");
+    if (filename != "")
+    {
+        int lastSlash = filename.lastIndexOf("/");
+        QString shortName = filename.right(filename.size() - lastSlash - 1);
+        QFile::copy(filename, "./images/" + shortName);
+        QPixmap pixmap("./images/" + shortName);
+        ui->imagePreview->setPixmap(pixmap);
+        ui->imagePreview->setScaledContents(true);
+        //update internal data
+        imageFilePath = "./images/" + shortName;
+    } //end if
 }
 

@@ -22,7 +22,7 @@ void loginDialog::on_confrimBtn_clicked()
     QString emailLn = ui->emailLn->text();
     QString passwordLn = ui->passwordLn->text();
     // if found bool will change to true
-    bool found = false;
+    found = false;
     //open user file
     QFile users("users.txt");
     if (users.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -39,8 +39,7 @@ void loginDialog::on_confrimBtn_clicked()
             QString passwordCorrect = info.at(3);
             //check for match
             if(emailLn==usernameCorrect&&passwordLn==passwordCorrect) {
-                this->close();
-               QMessageBox::information(this, "Login", " login works");
+               this->close();
                found = true;
                users.close();
                emit sendLogin(usernameCorrect);

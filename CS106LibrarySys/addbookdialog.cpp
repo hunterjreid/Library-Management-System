@@ -27,15 +27,18 @@ addBookDialog::~addBookDialog()
 }
 void addBookDialog::on_confirmBtn_clicked()
 {
+//Confirm Btn path
     QString title = ui->TitleLn->text();
-    QString author = ui->authorLn->text();
-    //QString genre = ui->genreLn->text();
+    QString genre = ui->genreLn->text();
     QString words = ui->wordsRaw->toPlainText();
-    int canCheckout = 1;
-
+    QString added_date =QDate::currentDate().toString();
+    QString authorName = ui->authorLn->text();
+    QString checked_by = "";
+    QString return_date = "";
     if (title.trimmed() != "")
     {
-        *newBook = new book(0, title, author, imageFilePath, words, canCheckout);
+        //Add book.
+        *newBook = new book(0, title, genre, imageFilePath, words, authorName,added_date,checked_by,return_date);
         this->close();
     }
     else

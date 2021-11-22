@@ -16,7 +16,8 @@ SOURCES += \
     editbookdialog.cpp \
     logindialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    passworddialog.cpp
 
 HEADERS += \
     addbookdialog.h \
@@ -25,7 +26,8 @@ HEADERS += \
     createaccountdialog.h \
     editbookdialog.h \
     logindialog.h \
-    mainwindow.h
+    mainwindow.h \
+    passworddialog.h
 
 FORMS += \
     addbookdialog.ui \
@@ -33,7 +35,8 @@ FORMS += \
     createaccountdialog.ui \
     editbookdialog.ui \
     logindialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    passworddialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

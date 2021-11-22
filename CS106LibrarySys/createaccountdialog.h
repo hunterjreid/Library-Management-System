@@ -15,11 +15,8 @@ public:
     explicit createAccountDialog(QWidget *parent = nullptr);
     ~createAccountDialog();
 
-
-
 private slots:
     void on_createAccountBtn_clicked();
-
     void on_checkBox_stateChanged(int showPassword);
 
 signals:

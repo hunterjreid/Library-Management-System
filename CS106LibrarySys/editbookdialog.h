@@ -15,13 +15,15 @@ class editBookDialog : public QDialog
 public:
     explicit editBookDialog(book* editBook, QWidget *parent = nullptr);
     ~editBookDialog();
-
+    void confirmUpdate();
 private slots:
     void on_confirmbtn_clicked();
+    void on_addImageBtn_clicked();
 
 private:
     Ui::editBookDialog *ui;
     book* editBook;
+    QString imageFilePath;
 };
 
 #endif // EDITBOOKDIALOG_H
